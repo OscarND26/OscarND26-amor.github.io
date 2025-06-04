@@ -1,0 +1,208 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo con textura suave o gradiente dorado-blanco */
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, #fefefe, #f9f4e9);
+  color: #4b3b1b;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+/* Fondo decorativo con patrón griego */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Greek_meander_pattern.svg/2560px-Greek_meander_pattern.svg.png') repeat;
+  background-size: 120px;
+  opacity: 0.07;
+  z-index: -1;
+}
+
+/* Título */
+.titulo {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #b38600; /* dorado */
+  text-shadow: 1px 1px 2px #fff6c8;
+  font-family: 'Cinzel', serif; /* fuente clásica */
+}
+
+/* Grid principal */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+  grid-template-areas: 
+    "item1 item2 item3 item4 item5"
+    "item6 item7 message item8 item9"
+    "video1 video2 video3 video4 video5";
+}
+
+/* Asignar áreas manualmente */
+.image-grid > :nth-child(1) { grid-area: item1; }
+.image-grid > :nth-child(2) { grid-area: item2; }
+.image-grid > :nth-child(3) { grid-area: item3; }
+.image-grid > :nth-child(4) { grid-area: item4; }
+.image-grid > :nth-child(5) { grid-area: item5; }
+.image-grid > :nth-child(6) { grid-area: item6; }
+.image-grid > :nth-child(7) { grid-area: item7; }
+.image-grid > .grid-message { grid-area: message; }
+.image-grid > :nth-child(8) { grid-area: item8; }
+.image-grid > :nth-child(9) { grid-area: item9; }
+.image-grid > :nth-child(10) { grid-area: video1; }
+.image-grid > :nth-child(11) { grid-area: video2; }
+.image-grid > :nth-child(12) { grid-area: video3; }
+
+/* Animación fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grid-message {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+
+  /* CORREGIDO */
+  font-size: 16px; /* Tamaño adecuado del texto */
+  max-width: 100%; /* Que no se salga del contenedor */
+  box-sizing: border-box;
+  padding: 1rem;
+  overflow-wrap: break-word; /* Evita que palabras largas rompan el diseño */
+  word-break: break-word;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Retraso escalonado para animación */
+.image-grid > :nth-child(1) { animation-delay: 0.1s; }
+.image-grid > :nth-child(2) { animation-delay: 0.2s; }
+.image-grid > :nth-child(3) { animation-delay: 0.3s; }
+.image-grid > :nth-child(4) { animation-delay: 0.4s; }
+.image-grid > :nth-child(5) { animation-delay: 0.5s; }
+.image-grid > :nth-child(6) { animation-delay: 0.6s; }
+.image-grid > :nth-child(7) { animation-delay: 0.7s; }
+.image-grid > .grid-message { animation-delay: 0.8s; }
+.image-grid > :nth-child(8) { animation-delay: 0.9s; }
+.image-grid > :nth-child(9) { animation-delay: 1s; }
+.image-grid > :nth-child(10) { animation-delay: 1.1s; }
+.image-grid > :nth-child(11) { animation-delay: 1.2s; }
+.image-grid > :nth-child(12) { animation-delay: 1.3s; }
+
+/* Estilo común para imágenes y videos */
+.grid-item {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(179, 134, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 4px solid #b38600;
+  object-fit: contain;
+  aspect-ratio: 4 / 3;
+  background: #fff9e6; /* para que se vea bien en espacios vacíos */
+}
+
+
+/* Videos tienen aspecto 16:9 */
+video.grid-item {
+  aspect-ratio: 16 / 9;
+  background: #000; /* negro detrás del video */
+  border-radius: 12px;
+  border: 4px solid #b38600;
+}
+
+/* Hover: zoom y sombra */
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(179, 134, 0, 0.7);
+}
+
+.grid-message {
+  background: #b38600;
+  color: white;
+  border-radius: 16px;
+  padding: 25px 30px;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(179, 134, 0, 0.7);
+  user-select: none;
+  font-size: 1.4rem;
+  line-height: 1.4;
+
+  /* Tamaño mínimo para que se vea cuadrado */
+  min-width: 280px;
+  min-height: 280px;
+
+  /* Aspect ratio aproximado para cuadrado, pero flexible */
+  aspect-ratio: 1 / 1;
+
+  /* Que crezca en altura si hace falta */
+  height: auto;
+  max-width: 100%;
+
+  /* Centramos texto verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+}
+
+/* Responsive para móviles */
+@media (max-width: 900px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "item1 item2 item3"
+      "item4 message item5"
+      "item6 item7 item8"
+      "item9 video1 video2"
+      "video3 video4 video5";
+  }
+
+  /* Ajustar las áreas según nueva distribución */
+  .image-grid > :nth-child(1) { grid-area: item1; }
+  .image-grid > :nth-child(2) { grid-area: item2; }
+  .image-grid > :nth-child(3) { grid-area: item3; }
+  .image-grid > :nth-child(4) { grid-area: item4; }
+  .image-grid > .grid-message { grid-area: message; }
+  .image-grid > :nth-child(5) { grid-area: item5; }
+  .image-grid > :nth-child(6) { grid-area: item6; }
+  .image-grid > :nth-child(7) { grid-area: item7; }
+  .image-grid > :nth-child(8) { grid-area: item8; }
+  .image-grid > :nth-child(9) { grid-area: item9; }
+  .image-grid > :nth-child(10) { grid-area: video1; }
+  .image-grid > :nth-child(11) { grid-area: video2; }
+  .image-grid > :nth-child(12) { grid-area: video3; }
+}
+
+/* Fuente Cinzel desde Google Fonts */
+/* Agrega esta línea en el <head> de tu HTML para que funcione la fuente */
+/* <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet"> */
